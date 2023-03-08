@@ -26,7 +26,7 @@ public class ServiceProductImpl implements Service {
 
     @Override
     public void addProduct(List<Products> products) {
-        System.out.println(ANSI_CYAN+"Accepted goods : "+ANSI_RESET);
+        System.out.println(ANSI_CYAN+"ACCEPTED GOODS : "+ANSI_RESET);
         products.stream().filter(r -> r.getCompanyName().equals("TOIBOSS")
                         || r.getCompanyName().equals("MILKA")
                         || r.getCompanyName().equals("NUR"))
