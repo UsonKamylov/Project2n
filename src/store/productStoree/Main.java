@@ -51,12 +51,13 @@ public class Main {
         list.add(new Pasta(9, "Pasta", "NUR", LocalDate.of(2023, 3, 5)));
 
 
-        serviceProduct.addProduct(list);
-        serviceProduct.uppDateProducts(list);
+//        serviceProduct.addProduct(list);
+//        serviceProduct.uppDateProducts(list);
 
 
+//        login : uson
+//         possword: 0909
 
-        Scanner scanner = new Scanner(System.in);
         try {
             serviceProduct.checkToManager( list);
         } catch (MyException e){

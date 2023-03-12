@@ -26,7 +26,7 @@ public class ServiceProductImpl implements Service {
 
     @Override
     public void addProduct(List<Products> products) {
-        System.out.println(ANSI_CYAN+"ACCEPTED GOODS : "+ANSI_RESET);
+        System.out.println(ANSI_CYAN + "ACCEPTED GOODS : " + ANSI_RESET);
         products.stream().filter(r -> r.getCompanyName().equals("TOIBOSS")
                         || r.getCompanyName().equals("MILKA")
                         || r.getCompanyName().equals("NUR"))
@@ -54,28 +54,30 @@ public class ServiceProductImpl implements Service {
 
     @Override
     public void uppDateProducts(List<Products> list1) {
-       List<Products> productsl=list1.stream().filter(y-> y.getDate().isBefore(LocalDate.now())).toList();
-        System.out.println(ANSI_RED+"EXPIRED PRODUCTS "+ANSI_RESET);
+        List<Products> productsl = list1.stream().filter(x -> x.getCompanyName().equals("TOIBOSS")
+                        || x.getCompanyName().equals("NUR") || x.getCompanyName().equals("MILKA"))
+                .filter(y -> y.getDate().isBefore(LocalDate.now())).toList();
+        System.out.println(ANSI_RED + "EXPIRED PRODUCTS " + ANSI_RESET);
         productsl.forEach(System.out::println);
         list1.removeIf(p -> p.getDate().isBefore(LocalDate.now()));
         List<Products> productsList = list1.stream().filter(x -> x.getCompanyName().equals("TOIBOSS")
                         || x.getCompanyName().equals("NUR") || x.getCompanyName().equals("MILKA"))
                 .filter(c -> !c.getDate().isAfter(LocalDate.now().plusDays(7))).toList();
-        System.out.println(ANSI_BLUE+"DISCOUNT"+ANSI_RESET);
+        System.out.println(ANSI_BLUE + "DISCOUNT" + ANSI_RESET);
         productsList.forEach(System.out::println);
 
 
     }
 
     @Override
-    public void checkToManager( List<Products> products) {
+    public void checkToManager(List<Products> products) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(ANSI_YELLOW+"Выведите логин пороль :"+ANSI_RESET);
-        String login  = scanner.nextLine();
-        System.out.println(ANSI_YELLOW+"Напишите пароль: "+ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "Введите логин пороль :" + ANSI_RESET);
+        String login = scanner.nextLine();
+        System.out.println(ANSI_YELLOW + "Напишите пароль: " + ANSI_RESET);
         String password = scanner.nextLine();
         if (login.equals(manager.getLogin()) && password.equals(manager.getPassword())) {
-            System.out.println(ANSI_GREEN+"Welcome : " + login+ANSI_GREEN);
+            System.out.println(ANSI_GREEN + "Welcome : " + login + ANSI_GREEN);
             addProduct(products);
             uppDateProducts(products);
 
